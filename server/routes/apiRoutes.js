@@ -32,8 +32,8 @@ router.post("/authenticating", async (req, res) => {
 
 
 // GET Route for loading the logged user's posts.
-router.get("/posts", verifyToken, async (req, res) => {
-    const posts = await Post.find({});
+router.get("/posts/:userId", verifyToken, async (req, res) => {
+    const posts = await Post.find({ postByUser: req.params.userId });
     return res.json(posts);
 });
 
